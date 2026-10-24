@@ -31,10 +31,6 @@
       default = [ ];
     };
 
-    ignore = lib.mkOption {
-
-    };
-
     schedule = lib.mkOption {
       type = lib.types.str;
       default = "daily";

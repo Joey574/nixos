@@ -170,7 +170,10 @@ in
         };
         script = ''
           export KOPIA_PASSWORD="$(cat "$CREDENTIALS_DIRECTORY/repo-pw")"
-          # TODO swap once provider is chosen, likely backblaze b2
+          # TODO
+          # swap once provider is chosen, likely backblaze b2
+          # or even more likely just sanjay :)
+
           #kopia repository sync-to b2 \
           #  --bucket ${cfg.offsite.bucket} \
           #  --key-id "$(cat "$CREDENTIALS_DIRECTORY/id")" \

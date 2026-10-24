@@ -9,6 +9,9 @@ let
   tuning = cfg.tuning;
 in
 {
+  # TODO
+  # not actually sure if this sets the kernel package lmao, should probably make it do that too
+
   config = (
     lib.mkIf tuning.enable {
       nixpkgs.hostPlatform = {

@@ -1,5 +1,7 @@
 { ... }:
 
+# This might be better used after moving in
+
 {
   services.mealie = {
     enable = true;

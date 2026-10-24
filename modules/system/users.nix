@@ -16,8 +16,8 @@ in
         "nixbuild"
         "${cfg.user}"
       ];
-      users.groups.nixbuild = { };
 
+      users.groups.nixbuild = { };
       users.users.nixbuild = {
         isSystemUser = true;
         group = "nixbuild";
