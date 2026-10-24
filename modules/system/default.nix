@@ -1,6 +1,5 @@
 {
   lib,
-  pkgs,
   ...
 }:
 
@@ -14,6 +13,7 @@
     ./network.nix
     ./options.nix
     ./patches.nix
+    ./shell.nix
     ./ssh.nix
     ./tuning.nix
     ./users.nix
@@ -44,10 +44,6 @@
         algorithm = "zstd";
         memoryPercent = 50;
       };
-
-      programs.bash.interactiveShellInit = ''
-        ${pkgs.fastfetch}/bin/fastfetch
-      '';
 
       services.journald = {
         extraConfig = ''

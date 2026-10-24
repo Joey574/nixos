@@ -7,11 +7,11 @@
       blender
       discord
       spotify
-      starship
       tor-browser
       proton-vpn
       element-desktop
       nextcloud-client
+      nerd-fonts.fira-code
       libreoffice-qt6-fresh
     ];
 

@@ -9,15 +9,15 @@ let
   tuning = cfg.tuning;
 in
 {
-  # TODO
-  # not actually sure if this sets the kernel package lmao, should probably make it do that too
+  config = lib.mkMerge [
+    {
+      nixpkgs.hostPlatform.system = cfg.system;
+    }
 
-  config = (
-    lib.mkIf tuning.enable {
-      nixpkgs.hostPlatform = {
-        system = "${cfg.system}";
-        gcc.arch = "${tuning.arch}";
-        gcc.tune = "${tuning.tune}";
+    (lib.mkIf tuning.enable {
+      nixpkgs.hostPlatform.gcc = {
+        arch = tuning.arch;
+        tune = tuning.tune;
       };
 
       boot.kernelPackages = pkgs.linuxPackagesFor (
@@ -29,6 +29,6 @@ in
           ];
         }
       );
-    }
-  );
+    })
+  ];
 }
