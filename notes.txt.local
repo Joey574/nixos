@@ -1,0 +1,55 @@
+fingerprint: a0b15e0689931e825c1127928e6c25c2f08274f5a40b72c6a300a4e9c6f6a61a
+
+server2
+du -csh /etc/ssh /etc/secrets /var/lib/jellyfin /var/lib/radarr /var/lib/sonarr /var/lib/lidarr /var/lib/bazarr /var/lib/private/prowlarr /var/lib/private/seerr /var/lib/navidrome /var/lib/kiwix /var/lib/qBittorrent /var/lib/prometheus2
+32K     /etc/ssh
+44K     /etc/secrets
+8.7G    /var/lib/jellyfin
+1.1G    /var/lib/radarr
+204M    /var/lib/sonarr
+7.6G    /var/lib/lidarr
+816K    /var/lib/bazarr
+149M    /var/lib/private/prowlarr
+7.6M    /var/lib/private/seerr
+2.4G    /var/lib/navidrome
+2.2M    /var/lib/kiwix
+30G     /var/lib/qBittorrent
+4.3G    /var/lib/prometheus2
+54G     total
+
+
+server3
+sudo du -csh /etc/secrets /etc/ssh /var/gitlab/state /var/lib/private/open-webui /var/lib/redis-gitlab /var/lib/gitlab-secrets
+16K     /etc/secrets
+32K     /etc/ssh
+396M    /var/gitlab/state
+899M    /var/lib/private/open-webui
+2.9M    /var/lib/redis-gitlab
+36K     /var/lib/gitlab-secrets
+1.3G    total
+
+
+server4
+du -csh /etc/ssh /etc/secrets /var/lib/acme /var/lib/immich /var/lib/redis-immich /var/lib/nextcloud /var/lib/redis-nextcloud /var/lib/kopia-server /var/local/vaultwarden /var/local/postgresql
+40K     /etc/ssh
+44K     /etc/secrets
+68K     /var/lib/acme
+86G     /var/lib/immich
+1.2M    /var/lib/redis-immich
+28M     /var/lib/nextcloud
+12K     /var/lib/redis-nextcloud
+24K     /var/lib/kopia-server
+276K    /var/local/vaultwarden
+123M    /var/local/postgresql
+86G     total
+
+
+orin
+du -csh /etc/ssh /etc/secrets /var/lib/private/llama-cpp
+32K     /etc/ssh
+12K     /etc/secrets
+4.0K    /var/lib/private/llama-cpp
+48K     total
+
+
+ran through server4 initialization and added server4 as a user, still need to add all other servers and set up kopia-client
