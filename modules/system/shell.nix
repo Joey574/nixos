@@ -16,12 +16,15 @@
           "$git_branch"
           "$git_commit"
           "$git_state"
+          "$git_status"
           "$nix_shell"
+          "$c"
+          "$python"
           "$golang"
+          "$haskell"
           "$rust"
-          "$nodejs"
           "$lua"
-          "$php"
+          "$time"
           "$cmd_duration"
           "$character"
         ];
@@ -30,7 +33,7 @@
           show_always = true;
           format = "[$user]($style)";
           style_user = "bold green";
-          style_root = "bolt red";
+          style_root = "bold red";
         };
 
         hostname = {
@@ -46,6 +49,8 @@
         };
 
         git_branch.format = "[$symbol$branch]($style) ";
+        git_commit.format = "[$hash$tag]($style)";
+        git_state.format = "[$state($progress_current/$progress_total)]($style)";
         git_status.format = "([$all_status$ahead_behind]($style) )";
 
         nix_shell = {
@@ -54,7 +59,7 @@
         };
 
         cmd_duration = {
-          min_time = 2000;
+          min_time = 500;
           format = "[$duration]($style) ";
         };
 
