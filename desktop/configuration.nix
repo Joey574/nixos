@@ -1,10 +1,11 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   imports = [
     ./hardware-configuration.nix
     ../modules/system
     ./backup.nix
+    ./graphics.nix
     ./mounts.nix
     ./system.nix
     ./upgrade.nix
@@ -18,10 +19,11 @@
     };
 
     cache = {
-      enable = false;
+      enable = true;
       serve = true;
     };
 
+    kernel = "linux_zen";
     tuning = {
       enable = true;
       arch = "znver4";
@@ -41,38 +43,11 @@
       "kde"
       "util"
       "work"
+      "games"
     ];
   };
 
   networking.hostId = "cabecee6";
-
-  # pulled in just for Sober support, do not use elsewise
-  services.flatpak.enable = true;
-  users.users.joey.extraGroups = [ "adbusers" ];
-
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia = {
-    open = true;
-    modesetting.enable = true;
-  };
-
-  programs.steam = {
-    enable = true;
-    extraCompatPackages = with pkgs; [
-      proton-ge-bin
-    ];
-  };
-
-  services.wivrn = {
-    enable = true;
-    openFirewall = true;
-    autoStart = true;
-  };
-
-  environment.systemPackages = with pkgs; [
-    (prismlauncher.override { })
-  ];
 
   system.stateVersion = "26.05";
 }

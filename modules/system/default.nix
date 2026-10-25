@@ -1,8 +1,12 @@
 {
+  config,
   lib,
   ...
 }:
 
+let
+  cfg = config.my.system;
+in
 {
   imports = [
     ./packages
@@ -38,6 +42,8 @@
         keep-derivations = true;
         auto-optimise-store = true;
       };
+
+      nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) cfg.unfreePackages;
 
       zramSwap = {
         enable = true;

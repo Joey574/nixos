@@ -72,4 +72,9 @@
       zip
       duf
     ];
+
+  games =
+    pkgs: with pkgs; [
+      prismlauncher
+    ];
 }

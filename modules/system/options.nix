@@ -147,6 +147,12 @@
       description = "Workspace to import";
     };
 
+    unfreePackages = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+      description = "Names of unfree packages to allow";
+    };
+
     packageSets = lib.mkOption {
       type = lib.types.listOf (lib.types.enum (builtins.attrNames (import ./packages/sets.nix)));
       default = [ ];

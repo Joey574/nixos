@@ -20,16 +20,6 @@ in
     server4.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEGVMfax0kp43YRhkLrl6uyV23mp6a8wO+fw3mQlER/v root@server4";
   };
 
-  nixpkgs = {
-    config.allowUnfree = true;
-
-    hostPlatform = {
-      system = "x86_64-linux";
-      gcc.arch = "znver4";
-      gcc.tune = "znver4";
-    };
-  };
-
   nix = {
     distributedBuilds = true;
     optimise.automatic = true;
@@ -53,16 +43,6 @@ in
       experimental-features = [
         "nix-command"
         "flakes"
-      ];
-
-      substituters = [
-        "http://localhost:5000"
-        "https://cache.nixos.org"
-      ];
-
-      trusted-public-keys = [
-        "desktop-cache-1:9EtjPikUe7DJQj8B7yIUIdEkUTm7oaC9iSlzwqg5R5U="
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       ];
     };
 
