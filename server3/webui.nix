@@ -5,11 +5,7 @@ let
   port = 8083;
 in
 {
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "open-webui"
-    ];
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "open-webui" ];
 
   networking.firewall.interfaces.${iface}.allowedTCPPorts = [ port ];
 

@@ -1,7 +1,14 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "nvidia-x11"
+      "nvidia-settings"
+      "nvidia-kernel-modules"
+    ];
+
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware = {

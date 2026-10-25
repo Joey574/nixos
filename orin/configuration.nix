@@ -54,7 +54,15 @@ in
     carrierBoard = "devkit";
   };
 
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "cuda_cccl"
+      "cuda_cudart"
+      "cuda_nvcc"
+      "libcublas"
+    ];
+
   hardware.graphics.enable = true;
 
   environment.systemPackages = with pkgs; [
