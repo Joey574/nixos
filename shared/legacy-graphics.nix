@@ -1,13 +1,12 @@
 { config, lib, ... }:
 
 {
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "nvidia-x11"
-      "nvidia-settings"
-      "nvidia-kernel-modules"
-    ];
+  imports = [ ../modules/system ];
+  my.system.unfreePackages = [
+    "nvidia-x11"
+    "nvidia-settings"
+    "nvidia-kernel-modules"
+  ];
 
   services.xserver.videoDrivers = [ "nvidia" ];
 

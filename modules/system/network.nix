@@ -33,7 +33,7 @@ in
 
       networking.nameservers = [
         "9.9.9.9#dns.quad9.net"
-        "1.1.1.1#cloiudflare-dns.com"
+        "1.1.1.1#cloudflare-dns.com"
       ];
 
       services.resolved = {
@@ -44,7 +44,22 @@ in
           DNSOverTLS = "true";
           FallbackDNS = [
             "9.9.9.9#dns.quad9.net"
-            "1.1.1.1#cloiudflare-dns.com"
+            "1.1.1.1#cloudflare-dns.com"
+          ];
+        };
+      };
+
+      systemd.services.netbird-link-dns = {
+        description = "Relax DoT/DNSSEC on the Netbird link";
+        bindsTo = [ "sys-subsystem-net-devices-nb\\x2dwt0.device" ];
+        after = [ "sys-subsystem-net-devices-nb\\x2dwt0.device" "systemd-resolved.service" ];
+        wantedBy = [ "sys-subsystem-net-devices-nb\\x2dwt0.device" ];
+        serviceConfig = {
+          Type = "oneshot";
+          RemainAfterExit = true;
+          ExecStart = [
+            "${config.systemd.package}/bin/resolvectl dnsovertls ${net.privateInterface} no"
+            "${config.systemd.package}/bin/resolvectl dnssec ${net.privateInterface} no"
           ];
         };
       };
@@ -82,7 +97,7 @@ in
       networking.networkmanager.connectionConfig = {
         "ipv4.dhcp-send-hostname" = false;
         "ipv6.dhcp-send-hostname" = false;
-        "ipv6.ipvy-privacy" = 2;
+        "ipv6.ip6-privacy" = 2;
       };
     })
   ];

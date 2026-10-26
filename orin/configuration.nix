@@ -35,6 +35,13 @@ in
     system = "aarch64-linux";
     kernel = "linux_5_15";
 
+    unfreePackages = [
+      "cuda_cccl"
+      "cuda_cudart"
+      "cuda_nvcc"
+      "libcublas"
+    ];
+
     packageSets = [ "util" ];
   };
 
@@ -53,15 +60,6 @@ in
     som = "orin-agx";
     carrierBoard = "devkit";
   };
-
-  nixpkgs.config.allowUnfreePredicate =
-    pkg:
-    builtins.elem (lib.getName pkg) [
-      "cuda_cccl"
-      "cuda_cudart"
-      "cuda_nvcc"
-      "libcublas"
-    ];
 
   hardware.graphics.enable = true;
 

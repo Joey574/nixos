@@ -1,11 +1,12 @@
-{ config, lib, ... }:
+{ config, ... }:
 
 let
   iface = config.my.system.network.privateInterface;
   port = 8083;
 in
 {
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [ "open-webui" ];
+  imports = [ ../modules/system ];
+  my.system.unfreePackages = [ "open-webui" ];
 
   networking.firewall.interfaces.${iface}.allowedTCPPorts = [ port ];
 
