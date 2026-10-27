@@ -18,10 +18,11 @@
     };
 
     cache = {
-      enable = false;
+      enable = true;
       serve = true;
     };
 
+    kernel = "linux_zen";
     tuning = {
       enable = true;
       arch = "znver3";
