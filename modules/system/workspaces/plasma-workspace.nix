@@ -23,6 +23,11 @@ let
     patches = [];
     postInstall = "";
 
+    nativeBuildInputs = (old.nativeBuildInputs or []) ++ (with pkgs; [
+      shaderc
+      glslang
+    ]);
+
     buildInputs = (old.buildInputs or []) ++ (with pkgs.kdePackages; [
       qtdeclarative
       qtwebchannel
