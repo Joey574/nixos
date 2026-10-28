@@ -15,8 +15,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "CaptSilver";
       repo = "wallpaper-engine-kde-plugin";
-      rev = "ae6c7539bc8ddaf9e0531f88d83eb9dc454aec15";
-      hash = "sha256-j+Z8iZcP9lyEZ7cJ6G8eSkzrnL4k4RfDGMj/Z2EMhQo=";
+      rev = "474dc8a3d41ce019dac4272f70b63fddf9bd26ec";
+      hash = "sha256-W6xr0XVA16N5yf/hTEb9iN1AfAd/csQV5xFwJZ6ujXM=";
       fetchSubmodules = true;
     };
 
