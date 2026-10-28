@@ -147,6 +147,26 @@
       description = "Workspace to import";
     };
 
+    plasma = lib.mkOption {
+      type = lib.types.submodule {
+        options = {
+          wp-engine = lib.mkOption {
+            type = lib.types.submodule {
+              options = {
+                enable = lib.mkOption {
+                  type = lib.types.bool;
+                  default = false;
+                  description = "Builds the wallpaper-engine-plugin for kde";
+                };
+              };
+            };
+            default = {};
+          };
+        };
+      };
+      default = {};
+    };
+
     unfreePackages = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];

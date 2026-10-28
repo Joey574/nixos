@@ -9,7 +9,6 @@
     ./mounts.nix
     ./system.nix
     ./upgrade.nix
-    ./wp-engine.nix
   ];
 
   my.system = {
@@ -38,6 +37,7 @@
 
     user = "joey";
     workspace = "plasma";
+    plasma.wp-engine.enable = true;
 
     packageSets = [
       "dev"

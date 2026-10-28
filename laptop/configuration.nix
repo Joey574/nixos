@@ -36,6 +36,7 @@
 
     user = "joey";
     workspace = "plasma";
+    plasma.wp-engine.enable = true;
 
     packageSets = [
       "dev"
