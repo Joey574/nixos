@@ -10,13 +10,13 @@ let
 
   wallpaperEngine = pkgs.kdePackages.wallpaper-engine-plugin.overrideAttrs(old: {
     pname = "wallpaper-engine-kde-plugin-captsilver";
-    version = "0-unstable";
+    version = "1.5-unstable";
 
     src = pkgs.fetchFromGitHub {
       owner = "CaptSilver";
       repo = "wallpaper-engine-kde-plugin";
-      rev = "84805256c9beefbab5672000b391e2ecc7fadd58";
-      hash = "sha256-dWEdXyHKBzwgtOvffpIgKW4akVPnm0mNTfoAU8q+/Ig=";
+      rev = "ae6c7539bc8ddaf9e0531f88d83eb9dc454aec15";
+      hash = "sha256-j+Z8iZcP9lyEZ7cJ6G8eSkzrnL4k4RfDGMj/Z2EMhQo=";
       fetchSubmodules = true;
     };
 
@@ -42,6 +42,7 @@ let
       libpulseaudio
       fontconfig
       freetype
+      libass
     ]);
   });
 in

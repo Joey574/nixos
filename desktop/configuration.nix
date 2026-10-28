@@ -48,6 +48,5 @@
     ];
   };
 
-  networking.hostId = "cabecee6";
   system.stateVersion = "26.05";
 }
