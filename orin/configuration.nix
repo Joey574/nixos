@@ -20,6 +20,7 @@ in
       hostname = "orin";
       enableSSH = true;
       privateInterface = "nb-wt0";
+      hardenDNS = false;
     };
 
     tuning = {

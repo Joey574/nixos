@@ -4,6 +4,7 @@ pushd /home/joey/repos/nixos/ > /dev/null
 
 user="admin"
 host=""
+target=""
 local_build=0
 use_log=0
 boot=0
@@ -18,6 +19,10 @@ while [ $# -gt 0 ]; do
         --local) local_build=1 ;;
         --log) use_log=1 ;;
         --boot) boot=1 ;;
+        --target)
+            target="$2"
+            shift
+            ;;
         -*)
             echo "Unknown option: $1"
             usage
@@ -55,8 +60,10 @@ log_format="bar"
 build_type="switch"
 [ "$boot" -eq 1 ] && build_type="boot"
 
+[ "$target" == "" ] && target=$host
+
 rebuild_args=(
-    --target-host "$user@$host"
+    --target-host "$user@$target"
     --sudo --ask-sudo-password
     --log-format "$log_format"
     -I "nixos-config=./${host}/configuration.nix"
@@ -77,7 +84,7 @@ fi
 # creates a local root node to avoid gc
 if [ "$host" != "desktop" ] && [ $(hostname) == "desktop" ] ; then
     echo "creating local gc root..."
-    path=$(sudo -u "joey" ssh "$user@$host" "readlink -f /run/current-system")
+    path=$(sudo -u "joey" ssh "$user@$target" "readlink -f /run/current-system")
     ln -sfn "$path" "/nix/var/nix/gcroots/per-host/${host}"
 fi
 

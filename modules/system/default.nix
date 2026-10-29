@@ -29,12 +29,6 @@ in
       boot.loader.efi.canTouchEfiVariables = true;
       boot.loader.systemd-boot.configurationLimit = 5;
 
-      boot.kernelModules = [ "tcp_bbr" ];
-      boot.kernel.sysctl = {
-        "net.core.default_qdisc" = "fq";
-        "net.ipv4.tcp_congestion_control" = "bbr";
-      };
-
       time.timeZone = "America/Los_Angeles";
 
       nix.settings = {

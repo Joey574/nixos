@@ -28,6 +28,12 @@
             description = "Name of the shared mesh interface.";
           };
 
+          hardenDNS = lib.mkOption {
+            type = lib.types.bool;
+            default = true;
+            description = "Hardens dns settings, enabling things like DNSoverTLS and DNSEC";
+          };
+
           randomizeMac = lib.mkOption {
             type = lib.types.bool;
             default = false;

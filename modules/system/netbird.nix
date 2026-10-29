@@ -1,9 +1,12 @@
-{ config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 let
   cfg = config.my.system;
   nb = cfg.netbird;
-  unstable = import <nixos-unstable> { };
+  unstable = import <nixos-unstable> {
+      inherit (pkgs.stdenv.hostPlatform) system;
+      inherit (pkgs) config;
+    };
 in
 {
   config = lib.mkMerge [
