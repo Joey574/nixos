@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  webDirStore = "/nix/store/xwkyaal64lcdw4zyc39zx0qjsvzpkk3i-jellyfin-web-10.11.11/share/jellyfin-web";
+  webDirStore = "${pkgs.jellyfin-web}/share/jellyfin-web";
   dataDir = "/var/lib/jellyfin";
   configDir = "/var/lib/jellyfin/config";
   cacheDir = "/var/cache/jellyfin";
@@ -32,7 +32,7 @@ in
     "d ${dataDir} 0700 jellyfin jellyfin -"
     "d ${cacheDir} 0700 jellyfin jellyfin -"
     "d ${logDir} 0700 jellyfin jellyfin -"
-    "d ${webDir} 0700 jellyfin jellyfin -"
+    "d ${webDir} 0750 jellyfin jellyfin -"
 
     "z /home/jellyfin/media 2750 jellyfin jellyfin -"
     "d /home/jellyfin/media/movies 2770 jellyfin media -"
@@ -49,30 +49,36 @@ in
     logDir = logDir;
   };
 
-  # sync web data
-  systemd.services.jellyfin-web-sync = {
-    description = "sync jellyfin web dir";
-    before = [ "jellyfin.service" ];
-    requiredBy = [ "jellyfin.service" ];
-    serviceConfig = {
-      Type = "oneshot";
-      User = "jellyfin";
-      Group = "jellyfin";
-      ExecStart = "${pkgs.rsync}/bin/rsync -a --delete ${webDirStore}/ ${webDir}/";
-    };
-  };
-
   # enable jellyfin metrics and bind web dir path
   systemd.services.jellyfin = {
     preStart =
       let
-        systemXml = "/home/jellyfin/config/system.xml";
+        systemXml = "${config.services.jellyfin.configDir}/system.xml";
       in
       ''
         if [ -f "${systemXml}" ]; then
           ${pkgs.gnused}/bin/sed -i \
             's#<EnableMetrics>false</EnableMetrics>#<EnableMetrics>true</EnableMetrics>#' \
             "${systemXml}"
+        fi
+
+        # Synchronize the web files when the package changes.
+        versionFile="${webDir}/.nix-store-path"
+
+        if [ ! -f "$versionFile" ] ||
+            [ "$(cat "$versionFile")" != "${webDirStore}" ]; then
+
+          echo "Updating Jellyfin web files..."
+
+          ${pkgs.rsync}/bin/rsync \
+            -a \
+            --chmod=u+rwX \
+            --delete \
+            --exclude='/.nix-store-path' \
+            "${webDirStore}/" \
+            "${webDir}/"
+
+          echo "${webDirStore}" > "$versionFile"
         fi
       '';
 
