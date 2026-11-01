@@ -4,12 +4,12 @@
       vlc
       foot
       ffmpeg
+      fractal
       blender
       discord
       spotify
       tor-browser
       proton-vpn
-      element-desktop
       nextcloud-client
       nerd-fonts.fira-code
       libreoffice-qt6-fresh
@@ -76,5 +76,6 @@
   games =
     pkgs: with pkgs; [
       prismlauncher
+      android-tools
     ];
 }

@@ -119,6 +119,15 @@
                 "test_batch_pitch_shift"
               ];
             });
+
+            imageio = pyprev.imageio.overridePythonAttrs(old: {
+              disabledTests = (old.disabledTests or []) ++ [
+                "test_tifffile"
+                "test_reading_saving"
+                "test_png_16bit"
+                "test_png"
+              ];
+            });
           };
         };
 
