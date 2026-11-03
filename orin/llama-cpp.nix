@@ -36,7 +36,7 @@ in
       "on"
 
       "--fit-target"
-      "6144"
+      "8192"
 
       "--ctx-size"
       "8192"
@@ -52,6 +52,9 @@ in
       "--cache-ram"
       "1024"
 
+      "-np"
+      "1"
+
       "--jinja"
       "--no-ui"
     ];
@@ -61,9 +64,9 @@ in
     SupplementaryGroups = [ "video" ];
     ProcSubset = lib.mkForce "all";
 
-    MemoryHigh = "46G";
-    MemoryMax = "52G";
-    MemorySwapMax = "1G";
+    MemoryHigh = "40G";
+    MemoryMax = "44G";
+    MemorySwapMax = "0G";
 
     OOMPolicy = "kill";
 

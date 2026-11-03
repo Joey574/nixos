@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+  { config, pkgs, ... }:
 
 let
   webDirStore = "${pkgs.jellyfin-web}/share/jellyfin-web";
