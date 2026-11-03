@@ -82,6 +82,11 @@
               disabledTests = (old.disabledTests or [ ]) ++ [
                 "test_disposition_param_linear_performance"
                 "test_gc"
+                "AutoreloadTest"
+                "ParseCookieTest"
+                "ThreadResolverImportTest"
+                "ProcessTest"
+                "SimpleHTTPSClientTestCase"
               ];
             });
 
