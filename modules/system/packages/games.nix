@@ -31,5 +31,10 @@ in
       openFirewall = true;
       autoStart = true;
     };
+
+    services.avahi = {
+        enable = true;
+        openFirewall = true;
+    };
   };
 }

@@ -16,7 +16,6 @@ in
     ./netbird.nix
     ./network.nix
     ./options.nix
-    ./patches.nix
     ./shell.nix
     ./ssh.nix
     ./tuning.nix

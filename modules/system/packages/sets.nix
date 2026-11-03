@@ -7,6 +7,7 @@
       blender
       discord
       spotify
+      dbeaver-bin
       tor-browser
       proton-vpn
       element-desktop
@@ -76,5 +77,6 @@
   games =
     pkgs: with pkgs; [
       prismlauncher
+      android-tools
     ];
 }

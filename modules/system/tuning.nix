@@ -15,10 +15,12 @@ in
     }
 
     (lib.mkIf tuning.enable {
-      nixpkgs.hostPlatform.gcc = {
-        arch = tuning.arch;
-        tune = tuning.tune;
-      };
+      # TODO
+      # make this configurable, but im tired of building everything at this point
+      # nixpkgs.hostPlatform.gcc = {
+      #   arch = tuning.arch;
+      #   tune = tuning.tune;
+      # };
 
       boot.kernelPackages = pkgs.linuxPackagesFor (
         pkgs.${cfg.kernel}.override {
