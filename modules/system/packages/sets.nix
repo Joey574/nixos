@@ -4,12 +4,13 @@
       vlc
       foot
       ffmpeg
-      fractal
       blender
       discord
       spotify
+      dbeaver-bin
       tor-browser
       proton-vpn
+      element-desktop
       nextcloud-client
       nerd-fonts.fira-code
       libreoffice-qt6-fresh
