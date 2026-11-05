@@ -66,6 +66,7 @@
   util =
     pkgs: with pkgs; [
       fastfetch
+      busybox
       fwupd
       unzip
       tmux
