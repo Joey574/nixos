@@ -8,10 +8,10 @@ let
   logDir = "/var/lib/jellyfin/log";
   webDir = "/home/jellyfin/web";
 
-  iface = config.my.system.network.privateInterface;
+  port = 8096;
 in
 {
-  networking.firewall.interfaces.${iface}.allowedTCPPorts = [ 8096 ];
+  networking.firewall.allowedTCPPorts = [ port ];
 
   # Jellyfin user config
   users.groups.media = { };
