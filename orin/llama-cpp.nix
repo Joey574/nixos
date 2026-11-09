@@ -38,8 +38,8 @@ in
       "--fit-target"
       "8192"
 
-      "--ctx-size"
-      "8192"
+      #"--ctx-size"
+      #"8192"
 
       "--cache-type-k"
       "q8_0"

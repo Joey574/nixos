@@ -5,9 +5,6 @@
   ...
 }:
 
-let
-  cfg = config.my.system;
-in
 {
   config = lib.mkIf (builtins.elem "games" config.my.system.packageSets) {
     my.system.unfreePackages = [
@@ -25,7 +22,6 @@ in
       ];
     };
 
-    users.users.${cfg.user}.extraGroups = [ "adbusers" ];
     services.wivrn = {
       enable = true;
       openFirewall = true;
