@@ -57,11 +57,11 @@
     ];
 
   kde =
-    pkgs: with pkgs.kdePackages; [
+    pkgs: (with pkgs.kdePackages; [
       kcalc
       ksystemlog
       kolourpaint
-    ];
+    ]) ++ (with pkgs; [ waypipe ]);
 
   util =
     pkgs: with pkgs; [

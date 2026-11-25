@@ -34,7 +34,6 @@ in
     exporters.enable = true;
 
     system = "aarch64-linux";
-    kernel = "linux_5_15";
 
     unfreePackages = [
       "cuda_cccl"

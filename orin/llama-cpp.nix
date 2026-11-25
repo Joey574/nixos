@@ -36,13 +36,20 @@ in
       "on"
 
       "--fit-target"
+      "12288"
+
+      "--ctx-size"
       "8192"
 
-      #"--ctx-size"
-      #"8192"
+      "--batch-size"
+      "512"
+
+      "--ubatch-size"
+      "128"
 
       "--cache-type-k"
       "q8_0"
+
       "--cache-type-v"
       "q8_0"
 
@@ -50,7 +57,7 @@ in
       "1"
 
       "--cache-ram"
-      "1024"
+      "0"
 
       "-np"
       "1"

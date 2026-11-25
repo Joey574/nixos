@@ -43,7 +43,6 @@
       "kde"
       "util"
       "work"
-      "games"
     ];
   };
 
