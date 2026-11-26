@@ -22,34 +22,32 @@ in
     ./users.nix
   ];
 
-  config = lib.mkMerge [
-    {
-      boot.loader.systemd-boot.enable = true;
-      boot.loader.efi.canTouchEfiVariables = true;
-      boot.loader.systemd-boot.configurationLimit = 5;
+  config = {
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) cfg.unfreePackages;
 
-      time.timeZone = "America/Los_Angeles";
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
+    boot.loader.systemd-boot.configurationLimit = 5;
 
-      nix.settings = {
-        keep-outputs = true;
-        keep-derivations = true;
-        auto-optimise-store = true;
-      };
+    time.timeZone = "America/Los_Angeles";
 
-      nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) cfg.unfreePackages;
+    nix.settings = {
+      keep-outputs = true;
+      keep-derivations = true;
+      auto-optimise-store = true;
+    };
 
-      zramSwap = {
-        enable = true;
-        algorithm = "zstd";
-        memoryPercent = 50;
-      };
+    zramSwap = {
+      enable = true;
+      algorithm = "zstd";
+      memoryPercent = 50;
+    };
 
-      services.journald = {
-        extraConfig = ''
-          SystemMaxUse=500M
-          Storage=persistent
-        '';
-      };
-    }
-  ];
+    services.journald = {
+      extraConfig = ''
+        SystemMaxUse=500M
+        Storage=persistent
+      '';
+    };
+  };
 }
