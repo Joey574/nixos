@@ -72,7 +72,7 @@ rebuild_args=(
 )
 
 [ "$local_build" -eq 1 ] && rebuild_args+=(--option builders '')
-[ "$upgrade" -ew 1] && rebuild_args+=(--upgrade)
+[ "$upgrade" -ew 1 ] && rebuild_args+=(--upgrade)
 
 [ $(hostname) != "desktop" ] && [ "$local_build" -ne 1 ] && rebuild_args+=(--build-host joey@desktop)
 
