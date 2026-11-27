@@ -3,13 +3,14 @@
     pkgs: with pkgs; [
       vlc
       foot
+      nmap
       ffmpeg
       blender
       discord
       spotify
+      proton-vpn
       dbeaver-bin
       tor-browser
-      proton-vpn
       element-desktop
       nextcloud-client
       nerd-fonts.fira-code
