@@ -26,6 +26,7 @@
       gopls
       rustup
       gcc
+      clang
       gdb
       cmake
       ninja
